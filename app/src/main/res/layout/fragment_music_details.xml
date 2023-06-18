@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,31 +10,31 @@
             type="com.karakoca.itunesapp.domain.model.SearchResult" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:fitsSystemWindows="true"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
-            app:elevation="@dimen/dp4"
-            android:translationZ="@dimen/dp4"
             android:layout_gravity="top"
+            android:background="@color/white"
+            android:translationZ="@dimen/dp4"
+            app:elevation="@dimen/dp4"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
-                android:orientation="horizontal"
                 android:background="@color/white"
+                android:orientation="horizontal"
                 app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/back"
-                    android:layout_width="@dimen/dp24"
+                    android:layout_width="@dimen/dp18"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_arrow_left" />
@@ -62,9 +63,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:padding="@dimen/dp24"
+                android:layout_height="match_parent"
                 android:clipToPadding="false"
-                android:layout_height="match_parent">
+                android:padding="@dimen/dp24">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/img_music"
@@ -90,36 +91,85 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp8"
-                    android:gravity="center"
                     android:fontFamily="@font/nunito_sans_light"
-                    android:textSize="@dimen/sp12"
+                    android:gravity="center"
                     android:text="@{details.collectionName}"
-                    tools:text="Collection Name"
-                    app:layout_constraintTop_toBottomOf="@id/img_music" />
+                    android:textSize="@dimen/sp12"
+                    app:layout_constraintTop_toBottomOf="@id/img_music"
+                    tools:text="Collection Name" />
 
                 <TextView
                     android:id="@+id/tv_track_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp24"
-                    android:gravity="start"
                     android:fontFamily="@font/nunito_sans_bold"
-                    android:textSize="@dimen/sp18"
+                    android:gravity="start"
                     android:text="@{details.trackName}"
-                    tools:text="Track Name"
-                    app:layout_constraintTop_toBottomOf="@id/collection_name" />
+                    android:textSize="@dimen/sp18"
+                    app:layout_constraintTop_toBottomOf="@id/collection_name"
+                    tools:text="Track Name" />
 
                 <TextView
                     android:id="@+id/artist_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp8"
-                    android:gravity="start"
                     android:fontFamily="@font/nunito_sans_semibold"
-                    android:textSize="@dimen/sp14"
+                    android:gravity="start"
                     android:text="@{details.artistName}"
-                    tools:text="Artist Name"
-                    app:layout_constraintTop_toBottomOf="@id/tv_track_name" />
+                    android:textSize="@dimen/sp14"
+                    app:layout_constraintTop_toBottomOf="@id/tv_track_name"
+                    tools:text="Artist Name" />
+
+                <TextView
+                    android:id="@+id/release_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:fontFamily="@font/nunito_sans_semibold"
+                    android:gravity="start"
+                    android:text="@{@string/release_date(details.formattedDate)}"
+                    android:textSize="@dimen/sp14"
+                    app:layout_constraintTop_toBottomOf="@id/artist_name"
+                    tools:text="11/11/20" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:fontFamily="@font/nunito_sans_semibold"
+                    android:gravity="start"
+                    android:text="@string/price"
+                    android:textSize="@dimen/sp14"
+                    app:layout_constraintBottom_toBottomOf="@+id/price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/release_date" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:fontFamily="@font/nunito_sans_bold"
+                    android:gravity="start"
+                    android:text="@{@string/formatted_price(details.trackPrice.toString(),details.currency)}"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textSize="@dimen/sp18"
+                    android:layout_marginStart="@dimen/dp4"
+                    app:layout_constraintStart_toEndOf="@id/tv_price"
+                    app:layout_constraintTop_toBottomOf="@id/release_date"
+                    tools:text="100 USD" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:backgroundTint="@android:color/holo_orange_dark"
+                    android:text="@string/buy"
+                    android:textAllCaps="false"
+                    app:cornerRadius="@dimen/dp12" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

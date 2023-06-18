@@ -39,7 +39,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY"
+                        android:scaleType="centerCrop"
                         app:layout_constraintHeight_max="100dp"
                         app:loadImage="@{item.artworkUrl100}"
                         tools:src="@tools:sample/avatars" />
@@ -55,6 +55,7 @@
                     android:fontFamily="@font/nunito_sans_bold"
                     android:gravity="center"
                     android:maxLines="2"
+                    android:lines="2"
                     android:ellipsize="end"
                     android:text="@{item.trackName}"
                     android:textColor="@color/black"
@@ -71,6 +72,9 @@
                     android:layout_marginHorizontal="12dp"
                     android:fontFamily="@font/nunito_sans_regular"
                     android:gravity="center"
+                    android:maxLines="2"
+                    android:lines="2"
+                    android:ellipsize="end"
                     android:text="@{item.artistName}"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"

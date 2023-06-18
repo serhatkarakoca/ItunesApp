@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ItunesApp</string>
+    <string name="home">Ana Sayfa</string>
+    <string name="vertical">Dikey</string>
+    <string name="horizontal">Yatay</string>
+    <string name="grid">Izgara</string>
+    <string name="release_date">Çıkış Tarihi: %1$s</string>
+    <string name="total_result">%1$d sonuç bulundu</string>
+    <string name="search">Ara</string>
+    <string name="no_results_found">Sonuç bulunamadı</string>
+    <string name="explore_more">Daha fazla keşfet</string>
+    <string name="price">"Fiyat : "</string>
+    <string name="buy">Satın Al</string>
+    <string name="artist">"Sanatçı • "</string>
+    <string name="collection">"Albüm • "</string>
+    <string name="song">"Şarkı • "</string>
+</resources>

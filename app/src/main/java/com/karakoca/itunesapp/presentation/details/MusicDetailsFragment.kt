@@ -6,6 +6,8 @@ import androidx.navigation.fragment.navArgs
 import com.karakoca.core.view.BaseFragment
 import com.karakoca.itunesapp.R
 import com.karakoca.itunesapp.databinding.FragmentMusicDetailsBinding
+import com.karakoca.itunesapp.util.createEnterTransition
+import com.karakoca.itunesapp.util.createReturnTransition
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,7 +16,10 @@ class MusicDetailsFragment: BaseFragment<FragmentMusicDetailsBinding, MusicDetai
     private val args:MusicDetailsFragmentArgs by navArgs()
 
     override fun init() {
-        with(binding){
+        enterTransition = createEnterTransition()
+        exitTransition = createReturnTransition()
+
+        with(binding) {
             details = args.musicDetails
             back.setOnClickListener {
                 findNavController().popBackStack()

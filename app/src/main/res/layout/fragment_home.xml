@@ -6,6 +6,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_search"
+            android:layout_width="match_parent"
+            app:cardBackgroundColor="@color/white"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="@dimen/dp8"
+            android:layout_margin="@dimen/dp16"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:iconifiedByDefault="false"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/white"
+                app:queryHint="jack johnson" />
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_track"
@@ -13,10 +33,19 @@
             android:layout_height="0dp"
             android:paddingVertical="@dimen/dp24"
             android:clipToPadding="false"
+            app:layout_constraintTop_toBottomOf="@id/card_search"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_track" />
 
+        <TextView
+            android:id="@+id/tv_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:textSize="@dimen/sp18"
+            android:visibility="gone"
+            android:text="@string/no_results_found" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

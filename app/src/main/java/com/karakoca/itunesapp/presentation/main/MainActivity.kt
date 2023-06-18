@@ -19,8 +19,10 @@ class MainActivity: BaseActivity<ActivityMainBinding , MainViewModel>(R.layout.a
         with(binding) {
             bottomNavView.setupWithNavController(navController)
         }
+
+        setSupportActionBar(binding.toolbar)
         navController.addOnDestinationChangedListener { navigation, destination, bundle ->
-            when(destination.id) {
+            when (destination.id) {
                 R.id.musicDetailsFragment -> binding.toolbar.isVisible = false
                 else -> binding.toolbar.isVisible = true
             }
