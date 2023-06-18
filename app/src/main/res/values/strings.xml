@@ -5,7 +5,7 @@
     <string name="horizontal">Horizontal</string>
     <string name="grid">Grid</string>
     <string name="formatted_price" translatable="false">%1$s %2$s</string>
-    <string name="release_date">Release date: %1$s</string>
+    <string name="release_date">Release date : %1$s</string>
     <string name="total_result"><b>%1$d</b> results found</string>
     <string name="search">Search</string>
     <string name="no_results_found">no results found</string>

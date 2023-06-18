@@ -6,7 +6,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.karakoca.core.view.BaseFragment
 import com.karakoca.itunesapp.App.Companion.mCacheDataSourceFactory
@@ -46,12 +45,6 @@ class MusicDetailsFragment: BaseFragment<FragmentMusicDetailsBinding, MusicDetai
                 exoAudioTrack.visibility = View.GONE
             }
 
-            exoAudioTrack.player?.addListener(object : Player.Listener {
-                override fun onIsPlayingChanged(isPlaying: Boolean) {
-                    super.onIsPlayingChanged(isPlaying)
-                    this@MusicDetailsFragment.isPlaying = isPlaying
-                }
-            })
             back.setOnClickListener {
                 findNavController().popBackStack()
             }
