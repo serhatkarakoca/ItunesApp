@@ -30,7 +30,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="@color/white"
                 android:orientation="horizontal"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+                app:layout_scrollFlags="snap">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/back"
