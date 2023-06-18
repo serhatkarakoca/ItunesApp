@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        app:showAsAction="always"
+        android:title="@string/home"/>
+
+
+    <item
+        android:id="@+id/verticalFragment"
+        android:icon="@drawable/ic_list_vertical"
+        app:showAsAction="always"
+        android:title="@string/vertical"/>
+
+    <item
+        android:id="@+id/gridFragment"
+        android:icon="@drawable/ic_grid"
+        app:showAsAction="always"
+        android:title="@string/grid"/>
+
+    <item
+        android:id="@+id/horizontalFragment"
+        android:icon="@drawable/ic_more"
+        app:showAsAction="always"
+        android:title="@string/horizontal"/>
+
+</menu>

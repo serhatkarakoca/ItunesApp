@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        tools:layout="@layout/fragment_home"
+        android:name="com.karakoca.itunesapp.presentation.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_musicDetailsFragment"
+            app:destination="@id/musicDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gridFragment"
+        android:name="com.karakoca.itunesapp.presentation.grid.GridFragment"
+        android:label="GridFragment" >
+        <action
+            android:id="@+id/action_gridFragment_to_musicDetailsFragment"
+            app:destination="@id/musicDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/horizontalFragment"
+        android:name="com.karakoca.itunesapp.presentation.horizontal.HorizontalFragment"
+        android:label="HorizontalFragment" >
+        <action
+            android:id="@+id/action_horizontalFragment_to_musicDetailsFragment"
+            app:destination="@id/musicDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verticalFragment"
+        android:name="com.karakoca.itunesapp.presentation.vertical.VerticalFragment"
+        android:label="VerticalFragment" >
+        <action
+            android:id="@+id/action_verticalFragment_to_musicDetailsFragment"
+            app:destination="@id/musicDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/musicDetailsFragment"
+        android:name="com.karakoca.itunesapp.presentation.details.MusicDetailsFragment"
+        android:label="MusicDetailsFragment" />
+</navigation>
