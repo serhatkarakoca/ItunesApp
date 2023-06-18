@@ -1,28 +1,28 @@
 package com.karakoca.itunesapp.presentation.details
 
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.karakoca.core.view.BaseFragment
 import com.karakoca.itunesapp.R
-import com.karakoca.itunesapp.databinding.FragmentVerticalBinding
+import com.karakoca.itunesapp.databinding.FragmentMusicDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MusicDetailsFragment: BaseFragment<FragmentVerticalBinding, MusicDetailsViewModel>(R.layout.fragment_music_details) {
+class MusicDetailsFragment: BaseFragment<FragmentMusicDetailsBinding, MusicDetailsViewModel>(R.layout.fragment_music_details) {
     private val viewModel:MusicDetailsViewModel by viewModels()
-
+    private val args:MusicDetailsFragmentArgs by navArgs()
 
     override fun init() {
-
+        with(binding){
+            details = args.musicDetails
+            back.setOnClickListener {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun getAllMusics(){
-        lifecycleScope.launch {
-            viewModel.getMusics().collectLatest {
 
-            }
-        }
     }
 }

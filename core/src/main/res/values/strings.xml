@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">core</string>
+    <string name="error">Hata</string>
+    <string name="unexpected_error">Beklenmeyen bir hata oluştu</string>
+</resources>

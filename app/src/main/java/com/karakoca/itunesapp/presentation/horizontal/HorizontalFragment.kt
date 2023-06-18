@@ -8,7 +8,6 @@ import com.karakoca.itunesapp.R
 import com.karakoca.itunesapp.databinding.FragmentHorizontalBinding
 import com.karakoca.itunesapp.domain.model.SearchResult
 import com.karakoca.itunesapp.presentation.adapter.MusicAdapter
-import com.karakoca.itunesapp.presentation.vertical.VerticalFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -38,6 +37,6 @@ class HorizontalFragment: BaseFragment<FragmentHorizontalBinding, HorizontalView
     }
 
     private fun itemClickListener(item: SearchResult) {
-        findNavController().navigate(HorizontalFragmentDirections.actionHorizontalFragmentToMusicDetailsFragment())
+        findNavController().navigate(HorizontalFragmentDirections.actionHorizontalFragmentToMusicDetailsFragment(item))
     }
 }

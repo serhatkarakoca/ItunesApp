@@ -1,5 +1,6 @@
 package com.karakoca.itunesapp.presentation.main
 
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.karakoca.core.view.BaseActivity
@@ -18,10 +19,18 @@ class MainActivity: BaseActivity<ActivityMainBinding , MainViewModel>(R.layout.a
         with(binding) {
             bottomNavView.setupWithNavController(navController)
         }
+        navController.addOnDestinationChangedListener { navigation, destination, bundle ->
+            when(destination.id) {
+                R.id.musicDetailsFragment -> binding.toolbar.isVisible = false
+                else -> binding.toolbar.isVisible = true
+            }
+
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
 
 }

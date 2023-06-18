@@ -41,5 +41,9 @@
     <fragment
         android:id="@+id/musicDetailsFragment"
         android:name="com.karakoca.itunesapp.presentation.details.MusicDetailsFragment"
-        android:label="MusicDetailsFragment" />
+        android:label="MusicDetailsFragment" >
+        <argument
+            android:name="musicDetails"
+            app:argType="com.karakoca.itunesapp.domain.model.SearchResult" />
+    </fragment>
 </navigation>

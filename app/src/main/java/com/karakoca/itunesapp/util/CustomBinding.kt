@@ -11,3 +11,8 @@ fun ImageView.loadImage(imageUrl: String?) {
         .load(imageUrl)
         .into(this)
 }
+
+@BindingAdapter("app:setSelected")
+fun setSelected(view: View, isSelected: Boolean) {
+    view.isSelected = isSelected
+}

@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:elevation="4dp"
+            android:translationZ="@dimen/dp4"
             app:elevation="@dimen/dp4"
             app:layout_constraintTop_toTopOf="parent">
 

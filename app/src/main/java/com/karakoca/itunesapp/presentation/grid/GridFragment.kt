@@ -6,10 +6,8 @@ import androidx.navigation.fragment.findNavController
 import com.karakoca.core.view.BaseFragment
 import com.karakoca.itunesapp.R
 import com.karakoca.itunesapp.databinding.FragmentGridBinding
-import com.karakoca.itunesapp.databinding.FragmentHorizontalBinding
 import com.karakoca.itunesapp.domain.model.SearchResult
 import com.karakoca.itunesapp.presentation.adapter.MusicAdapter
-import com.karakoca.itunesapp.presentation.horizontal.HorizontalFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -33,6 +31,6 @@ class GridFragment: BaseFragment<FragmentGridBinding, GridViewModel>(R.layout.fr
         }
     }
     private fun itemClickListener(item: SearchResult) {
-        findNavController().navigate(GridFragmentDirections.actionGridFragmentToMusicDetailsFragment())
+        findNavController().navigate(GridFragmentDirections.actionGridFragmentToMusicDetailsFragment(item))
     }
 }

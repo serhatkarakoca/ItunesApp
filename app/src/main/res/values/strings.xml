@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ItunesApp</string>
+    <string name="home">Home</string>
+    <string name="vertical">Vertical</string>
+    <string name="horizontal">Horizontal</string>
+    <string name="grid">Grid</string>
+    <string name="formatted_price">%1$s %2$s</string>
+    <string name="release_date">Release date: %1$s</string>
+    <string name="total_result">%1$d results found</string>
+</resources>

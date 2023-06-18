@@ -11,6 +11,9 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/item_track_grid"
         app:spanCount="2"
+        android:paddingVertical="@dimen/dp24"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/dp8"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

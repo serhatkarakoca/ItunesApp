@@ -5,7 +5,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.karakoca.core.view.BaseFragment
 import com.karakoca.itunesapp.R
-import com.karakoca.itunesapp.databinding.FragmentHorizontalBinding
 import com.karakoca.itunesapp.databinding.FragmentVerticalBinding
 import com.karakoca.itunesapp.domain.model.SearchResult
 import com.karakoca.itunesapp.presentation.adapter.MusicAdapter
@@ -29,11 +28,12 @@ class VerticalFragment: BaseFragment<FragmentVerticalBinding, VerticalViewModel>
         lifecycleScope.launch {
             viewModel.getMusics().collectLatest {
                 musicAdapter.updateList(it)
+                binding.totalCount = it.size
             }
         }
     }
 
     private fun itemClickListener(item: SearchResult) {
-        findNavController().navigate(VerticalFragmentDirections.actionVerticalFragmentToMusicDetailsFragment())
+        findNavController().navigate(VerticalFragmentDirections.actionVerticalFragmentToMusicDetailsFragment(item))
     }
 }

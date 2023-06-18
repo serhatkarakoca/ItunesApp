@@ -10,13 +10,20 @@ import com.karakoca.itunesapp.R
 import com.karakoca.itunesapp.databinding.ItemTrackBinding
 import com.karakoca.itunesapp.domain.model.SearchResult
 
-class ItunesAdapter : PagingDataAdapter<SearchResult, ItunesAdapter.ItunesViewHolder>(DIFF_UTIL) {
+class ItunesAdapter(private val clickListener: ((SearchResult) -> Unit)) :
+    PagingDataAdapter<SearchResult, ItunesAdapter.ItunesViewHolder>(DIFF_UTIL) {
 
 
-    class ItunesViewHolder(private val binding: ItemTrackBinding) :
+    class ItunesViewHolder(
+        private val binding: ItemTrackBinding,
+        private val clickListener: ((SearchResult) -> Unit)
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: SearchResult) {
             binding.item = item
+            binding.root.setOnClickListener {
+                clickListener.invoke(item)
+            }
         }
     }
 
@@ -27,8 +34,13 @@ class ItunesAdapter : PagingDataAdapter<SearchResult, ItunesAdapter.ItunesViewHo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItunesViewHolder {
-        val binding = DataBindingUtil.inflate<ItemTrackBinding>(LayoutInflater.from(parent.context), R.layout.item_track, parent, false)
-        return ItunesViewHolder(binding)
+        val binding = DataBindingUtil.inflate<ItemTrackBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.item_track,
+            parent,
+            false
+        )
+        return ItunesViewHolder(binding, clickListener)
     }
 
     companion object {
