@@ -5,11 +5,13 @@ import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 @BindingAdapter("loadImage")
 fun ImageView.loadImage(imageUrl: String?) {
     Glide.with(this)
         .load(imageUrl)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
         .into(this)
 }
 
