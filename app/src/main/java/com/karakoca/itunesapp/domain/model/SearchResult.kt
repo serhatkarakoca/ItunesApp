@@ -23,6 +23,7 @@ data class SearchResult(
     val trackName: String?,
     val trackPrice: Double?,
     val trackTimeMillis: Int?,
+    val previewUrl: String?,
 ): Parcelable {
 
     @IgnoredOnParcel
@@ -40,5 +41,13 @@ data class SearchResult(
         } catch (e: Exception) {
             null
         }
+    }
+
+    fun getTrackTime(): String? {
+        trackTimeMillis ?: return null
+        val seconds = (trackTimeMillis / 1000) % 60
+        val minutes = (trackTimeMillis / (1000 * 60)) % 60
+
+        return String.format("%02d:%02d", minutes, seconds)
     }
 }

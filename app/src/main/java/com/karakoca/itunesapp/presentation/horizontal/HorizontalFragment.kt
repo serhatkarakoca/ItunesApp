@@ -1,5 +1,6 @@
 package com.karakoca.itunesapp.presentation.horizontal
 
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -13,10 +14,18 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HorizontalFragment: BaseFragment<FragmentHorizontalBinding, HorizontalViewModel>(R.layout.fragment_horizontal) {
-    private val viewModel:HorizontalViewModel by viewModels()
+class HorizontalFragment :
+    BaseFragment<FragmentHorizontalBinding, HorizontalViewModel>(R.layout.fragment_horizontal) {
+    private val viewModel: HorizontalViewModel by viewModels()
 
-    private val musicAdapter by lazy { MusicAdapter(emptyList(), MusicAdapter.ItemType.HORIZONTAL, ::itemClickListener, ::deleteClickListener) }
+    private val musicAdapter by lazy {
+        MusicAdapter(
+            emptyList(),
+            MusicAdapter.ItemType.HORIZONTAL,
+            ::itemClickListener,
+            ::deleteClickListener
+        )
+    }
 
 
     override fun init() {
@@ -24,7 +33,7 @@ class HorizontalFragment: BaseFragment<FragmentHorizontalBinding, HorizontalView
         getAllMusics()
     }
 
-    private fun getAllMusics(){
+    private fun getAllMusics() {
         lifecycleScope.launch {
             viewModel.getMusics().collectLatest {
                 musicAdapter.updateList(it)
@@ -33,10 +42,21 @@ class HorizontalFragment: BaseFragment<FragmentHorizontalBinding, HorizontalView
     }
 
     private fun deleteClickListener(trackId: Int) {
-        viewModel.deleteMusicItem(trackId)
+        AlertDialog.Builder(requireContext())
+            .setMessage(getString(R.string.are_u_sure_delete))
+            .setPositiveButton(getString(android.R.string.ok)) { _, _ ->
+                viewModel.deleteMusicItem(trackId)
+            }
+            .setNegativeButton(getString(android.R.string.cancel)) { dialog, _ -> dialog.dismiss() }
+            .show()
+
     }
 
     private fun itemClickListener(item: SearchResult) {
-        findNavController().navigate(HorizontalFragmentDirections.actionHorizontalFragmentToMusicDetailsFragment(item))
+        findNavController().navigate(
+            HorizontalFragmentDirections.actionHorizontalFragmentToMusicDetailsFragment(
+                item
+            )
+        )
     }
 }

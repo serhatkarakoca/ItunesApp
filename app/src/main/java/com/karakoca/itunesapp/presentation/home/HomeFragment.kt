@@ -67,10 +67,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                 // Only emit when REFRESH LoadState for RemoteMediator changes.
                 .distinctUntilChangedBy { it.refresh }
                 // Only react to cases where Remote REFRESH completes i.e., NotLoading.
-                .filter { it.refresh is LoadState.NotLoading }
+                .filter { it.refresh is LoadState.NotLoading || it.refresh is LoadState.Loading }
                 .collectLatest {
-                    binding.tvEmpty.isVisible = viewModel.getLocalDataSize() == 0
+                    if (it.refresh is LoadState.NotLoading) {
+                        binding.tvEmpty.isVisible = viewModel.getLocalDataSize() == 0
+                        binding.progressBar.isVisible = false
+                    } else {
+                        binding.progressBar.isVisible = true
+                    }
                 }
+
         }
     }
 

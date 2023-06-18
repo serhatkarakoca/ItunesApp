@@ -2,39 +2,48 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_search"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            app:cardBackgroundColor="@color/white"
-            app:cardUseCompatPadding="true"
-            app:cardCornerRadius="@dimen/dp8"
-            android:layout_margin="@dimen/dp16"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp16"
+            android:background="@android:color/transparent"
+            app:elevation="0dp">
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchView"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:iconifiedByDefault="false"
-                app:layout_constraintTop_toTopOf="parent"
-                android:background="@color/white"
-                app:queryHint="jack johnson" />
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/dp8"
+                app:cardUseCompatPadding="true"
+                android:layout_marginTop="@dimen/dp24"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:layout_constraintTop_toTopOf="parent">
 
-        </androidx.cardview.widget.CardView>
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:iconifiedByDefault="false"
+                    app:queryBackground="@android:color/transparent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:queryHint="jack johnson" />
+
+            </androidx.cardview.widget.CardView>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_track"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:paddingVertical="@dimen/dp24"
+            android:layout_height="match_parent"
             android:clipToPadding="false"
-            app:layout_constraintTop_toBottomOf="@id/card_search"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingVertical="@dimen/dp24"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_track" />
 
@@ -42,10 +51,20 @@
             android:id="@+id/tv_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:fontFamily="@font/nunito_sans_bold"
+            android:gravity="center"
+            android:text="@string/no_results_found"
             android:textSize="@dimen/sp18"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_gravity="top"
             android:visibility="gone"
-            android:text="@string/no_results_found" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginTop="72dp"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

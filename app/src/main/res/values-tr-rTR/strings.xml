@@ -6,7 +6,7 @@
     <string name="horizontal">Yatay</string>
     <string name="grid">Izgara</string>
     <string name="release_date">Çıkış Tarihi: %1$s</string>
-    <string name="total_result">%1$d sonuç bulundu</string>
+    <string name="total_result"><b>%1$d</b> sonuç bulundu</string>
     <string name="search">Ara</string>
     <string name="no_results_found">Sonuç bulunamadı</string>
     <string name="explore_more">Daha fazla keşfet</string>
@@ -15,4 +15,6 @@
     <string name="artist">"Sanatçı • "</string>
     <string name="collection">"Albüm • "</string>
     <string name="song">"Şarkı • "</string>
+    <string name="time">Süre : </string>
+    <string name="are_u_sure_delete">Bu öğeyi silmek istediğinize emin misiniz ?</string>
 </resources>

@@ -129,6 +129,7 @@
                     android:fontFamily="@font/nunito_sans_semibold"
                     android:gravity="center"
                     android:maxLines="1"
+                    app:visibility="@{item.trackPrice != null}"
                     android:text="@{@string/formatted_price(item.trackPrice.toString(),item.currency)}"
                     android:textColor="@android:color/holo_green_dark"
                     app:layout_constraintEnd_toEndOf="parent"

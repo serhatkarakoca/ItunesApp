@@ -64,112 +64,173 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:padding="@dimen/dp24">
+                android:clipToPadding="false">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/img_music"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:cardCornerRadius="@dimen/dp24"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:padding="@dimen/dp24"
+                    android:layout_height="wrap_content">
 
-                    <androidx.appcompat.widget.AppCompatImageView
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/img_music"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:cardCornerRadius="@dimen/dp24"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            app:loadImage="@{details.artworkUrl100}"
+                            tools:src="@tools:sample/avatars" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/collection_name"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        app:loadImage="@{details.artworkUrl100}"
-                        tools:src="@tools:sample/avatars" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:fontFamily="@font/nunito_sans_light"
+                        android:gravity="center"
+                        android:text="@{details.collectionName}"
+                        android:textSize="@dimen/sp12"
+                        app:layout_constraintTop_toBottomOf="@id/img_music"
+                        tools:text="Collection Name" />
 
-                </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/collection_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:fontFamily="@font/nunito_sans_light"
-                    android:gravity="center"
-                    android:text="@{details.collectionName}"
-                    android:textSize="@dimen/sp12"
-                    app:layout_constraintTop_toBottomOf="@id/img_music"
-                    tools:text="Collection Name" />
+                    <TextView
+                        android:id="@+id/tv_track_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp24"
+                        android:fontFamily="@font/nunito_sans_bold"
+                        android:gravity="start"
+                        android:text="@{details.trackName}"
+                        android:textSize="@dimen/sp18"
+                        app:layout_constraintTop_toBottomOf="@id/collection_name"
+                        tools:text="Track Name" />
 
-                <TextView
-                    android:id="@+id/tv_track_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp24"
-                    android:fontFamily="@font/nunito_sans_bold"
-                    android:gravity="start"
-                    android:text="@{details.trackName}"
-                    android:textSize="@dimen/sp18"
-                    app:layout_constraintTop_toBottomOf="@id/collection_name"
-                    tools:text="Track Name" />
+                    <TextView
+                        android:id="@+id/artist_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:fontFamily="@font/nunito_sans_semibold"
+                        android:gravity="start"
+                        android:text="@{details.artistName}"
+                        android:textSize="@dimen/sp14"
+                        app:layout_constraintTop_toBottomOf="@id/tv_track_name"
+                        tools:text="Artist Name" />
 
-                <TextView
-                    android:id="@+id/artist_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:fontFamily="@font/nunito_sans_semibold"
-                    android:gravity="start"
-                    android:text="@{details.artistName}"
-                    android:textSize="@dimen/sp14"
-                    app:layout_constraintTop_toBottomOf="@id/tv_track_name"
-                    tools:text="Artist Name" />
+                    <TextView
+                        android:id="@+id/tv_track_time_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp16"
+                        android:fontFamily="@font/nunito_sans_bold"
+                        android:gravity="start"
+                        android:text="@string/time"
+                        android:textSize="@dimen/sp16"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/artist_name"
+                        tools:text="Duration :" />
 
-                <TextView
-                    android:id="@+id/release_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:fontFamily="@font/nunito_sans_semibold"
-                    android:gravity="start"
-                    android:text="@{@string/release_date(details.formattedDate)}"
-                    android:textSize="@dimen/sp14"
-                    app:layout_constraintTop_toBottomOf="@id/artist_name"
-                    tools:text="11/11/20" />
+                    <TextView
+                        android:id="@+id/tv_track_time"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:fontFamily="@font/nunito_sans_semibold"
+                        android:gravity="bottom"
+                        android:text="@{details.trackTime}"
+                        android:textSize="@dimen/sp14"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_track_time_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv_track_time_title"
+                        app:layout_constraintTop_toTopOf="@id/tv_track_time_title"
+                        android:visibility="gone"
+                        tools:text="03:02" />
 
-                <TextView
-                    android:id="@+id/tv_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:fontFamily="@font/nunito_sans_semibold"
-                    android:gravity="start"
-                    android:text="@string/price"
-                    android:textSize="@dimen/sp14"
-                    app:layout_constraintBottom_toBottomOf="@+id/price"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/release_date" />
+                    <TextView
+                        android:id="@+id/release_date_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:fontFamily="@font/nunito_sans_bold"
+                        android:gravity="start"
+                        android:text='@{@string/release_date("")}'
+                        android:textSize="@dimen/sp16"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_track_time"
+                        tools:text="Release date:" />
 
-                <TextView
-                    android:id="@+id/price"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp8"
-                    android:fontFamily="@font/nunito_sans_bold"
-                    android:gravity="start"
-                    android:text="@{@string/formatted_price(details.trackPrice.toString(),details.currency)}"
-                    android:textColor="@android:color/holo_green_dark"
-                    android:textSize="@dimen/sp18"
-                    android:layout_marginStart="@dimen/dp4"
-                    app:layout_constraintStart_toEndOf="@id/tv_price"
-                    app:layout_constraintTop_toBottomOf="@id/release_date"
-                    tools:text="100 USD" />
+                    <TextView
+                        android:id="@+id/release_date"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_sans_semibold"
+                        android:gravity="start"
+                        android:text="@{details.formattedDate}"
+                        android:textSize="@dimen/sp14"
+                        app:layout_constraintBottom_toBottomOf="@+id/release_date_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/release_date_title"
+                        app:layout_constraintTop_toTopOf="@id/release_date_title"
+                        tools:text="11/11/20" />
 
-                <com.google.android.material.button.MaterialButton
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:fontFamily="@font/nunito_sans_bold"
+                        android:gravity="start"
+                        android:text="@string/price"
+                        android:textSize="@dimen/sp16"
+                        app:layout_constraintBottom_toBottomOf="@+id/price"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/release_date"
+                        app:visibility="@{details.trackPrice != null}" />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp4"
+                        android:layout_marginTop="@dimen/dp8"
+                        android:fontFamily="@font/nunito_sans_bold"
+                        android:gravity="start"
+                        android:text="@{@string/formatted_price(details.trackPrice.toString(),details.currency)}"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textSize="@dimen/sp18"
+                        app:layout_constraintStart_toEndOf="@id/tv_price"
+                        app:layout_constraintTop_toBottomOf="@id/release_date"
+                        app:visibility="@{details.trackPrice != null}"
+                        tools:text="100 USD" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.exoplayer2.ui.PlayerControlView
+                    android:id="@+id/exo_audio_track"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:backgroundTint="@android:color/holo_orange_dark"
-                    android:text="@string/buy"
-                    android:textAllCaps="false"
-                    app:cornerRadius="@dimen/dp12" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:show_buffering="always"
+                    app:show_fastforward_button="false"
+                    app:show_next_button="false"
+                    app:show_previous_button="false"
+                    app:show_rewind_button="false"
+                    app:show_shuffle_button="false"
+                    app:show_timeout="0"
+                    app:shutter_background_color="#00000000" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

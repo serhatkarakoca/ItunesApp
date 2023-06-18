@@ -6,7 +6,7 @@
     <string name="grid">Grid</string>
     <string name="formatted_price" translatable="false">%1$s %2$s</string>
     <string name="release_date">Release date: %1$s</string>
-    <string name="total_result">%1$d results found</string>
+    <string name="total_result"><b>%1$d</b> results found</string>
     <string name="search">Search</string>
     <string name="no_results_found">no results found</string>
     <string name="explore_more">Explore more</string>
@@ -15,4 +15,6 @@
     <string name="artist">Artist • </string>
     <string name="collection">Collection • </string>
     <string name="song">Song • </string>
+    <string name="time">Duration : </string>
+    <string name="are_u_sure_delete">Are you sure you want to delete this item ?</string>
 </resources>

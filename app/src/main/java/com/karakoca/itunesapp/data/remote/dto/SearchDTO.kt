@@ -23,7 +23,8 @@ fun SearchDTO.toSearchResult(): List<SearchResult> {
             releaseDate = result?.releaseDate,
             trackName = result?.trackName,
             trackPrice = result?.trackPrice,
-            trackTimeMillis = result?.trackTimeMillis
+            trackTimeMillis = result?.trackTimeMillis,
+            previewUrl = result?.previewUrl
         )
     } ?: emptyList()
 }
