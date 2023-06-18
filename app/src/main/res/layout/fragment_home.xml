@@ -6,6 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,12 +18,12 @@
                 android:id="@+id/card_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp24"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="@dimen/dp8"
                 app:cardUseCompatPadding="true"
-                android:layout_marginTop="@dimen/dp24"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_scrollFlags="scroll|enterAlways">
 
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchView"
@@ -30,41 +31,46 @@
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     app:iconifiedByDefault="false"
-                    app:queryBackground="@android:color/transparent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:queryBackground="@android:color/transparent"
                     app:queryHint="jack johnson" />
 
             </androidx.cardview.widget.CardView>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_track"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingVertical="@dimen/dp24"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_track" />
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <TextView
-            android:id="@+id/tv_empty"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/nunito_sans_bold"
-            android:gravity="center"
-            android:text="@string/no_results_found"
-            android:textSize="@dimen/sp18"
-            android:visibility="gone" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_track"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingVertical="@dimen/dp24"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_track" />
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:layout_gravity="top"
-            android:visibility="gone"
-            android:layout_marginTop="72dp"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+            <TextView
+                android:id="@+id/tv_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/nunito_sans_bold"
+                android:gravity="center"
+                android:text="@string/no_results_found"
+                android:textSize="@dimen/sp18"
+                android:visibility="gone" />
 
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_gravity="top"
+                android:layout_marginTop="72dp"
+                android:visibility="gone"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

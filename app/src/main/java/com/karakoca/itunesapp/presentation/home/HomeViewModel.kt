@@ -6,7 +6,6 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.cachedIn
 import androidx.room.withTransaction
 import com.karakoca.core.viewmodel.BaseViewModel
 import com.karakoca.itunesapp.data.local.ItunesDatabase
@@ -31,7 +30,7 @@ class HomeViewModel @Inject constructor(
     @OptIn(ExperimentalPagingApi::class)
     fun getHome(): Flow<PagingData<SearchResult>> {
         return Pager(
-            config = PagingConfig(pageSize = 20, enablePlaceholders = false),
+            config = PagingConfig(pageSize = 20, enablePlaceholders = false, prefetchDistance = 2),
             remoteMediator = ItunesRemoteMediator(
                 searchTerm = searchTerm.value ?: "",
                 itunesDb = iTunesDb,
@@ -41,7 +40,7 @@ class HomeViewModel @Inject constructor(
             pagingSourceFactory = {
                 iTunesDb.dao.pagingSource()
             }
-        ).flow.cachedIn(viewModelScope)
+        ).flow
     }
 
     fun clearItems() {

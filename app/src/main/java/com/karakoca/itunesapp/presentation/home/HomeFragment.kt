@@ -3,7 +3,10 @@ package com.karakoca.itunesapp.presentation.home
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.karakoca.core.extension.observe
@@ -36,12 +39,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
     override fun init() {
         observe(viewModel.searchTerm) {
+            if (it.isNullOrEmpty() || it.isBlank() || it == viewModel.searchTerm.value)
+                return@observe
             getHomeData()
             viewModel.clearItems()
         }
         binding.rvTrack.adapter = iTunesAdapter
 
         getHomeData()
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            getHomeData()
+        }
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -50,14 +59,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 searchJob?.cancel()
-                searchJob = lifecycleScope.launch {
-                    delay(1000)
-                    viewModel.searchTerm.value =
-                        if (newText.isNullOrEmpty().not()) newText else "jack johnson"
+                if (newText != viewModel.searchTerm.value) {
+                    searchJob = lifecycleScope.launch {
+                        delay(1000)
+                        viewModel.searchTerm.value =
+                            if (newText.isNullOrEmpty().not()) newText else "jack johnson"
+                    }
                 }
                 return true
             }
-
         })
     }
 
@@ -82,11 +92,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
     private fun getHomeData() {
         pagingJob?.cancel()
-        pagingJob = viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getHome().collectLatest {
-                iTunesAdapter.submitData(it)
+        pagingJob = viewModel.viewModelScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.getHome().collectLatest {
+                    iTunesAdapter.submitData(it)
+                    binding.swipeRefreshLayout.isRefreshing = false
+                }
             }
         }
+
     }
 
     private fun itemClickListener(item: SearchResult) {

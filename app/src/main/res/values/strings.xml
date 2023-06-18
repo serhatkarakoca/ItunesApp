@@ -17,4 +17,6 @@
     <string name="song">Song • </string>
     <string name="time">Duration : </string>
     <string name="are_u_sure_delete">Are you sure you want to delete this item ?</string>
+    <string name="check_internet">Please check your internet connection</string>
+    <string name="network_error">Network Connection Error</string>
 </resources>
