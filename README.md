@@ -1,6 +1,6 @@
 # ItunesApp
 
-The app fetching data from [Itunes Search Api](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/index.html) also playing music preview via exoplayer.
+An application fetching data from the [Itunes Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/index.html) can also play music previews via ExoPlayer.
 
 ## Technologies
 
