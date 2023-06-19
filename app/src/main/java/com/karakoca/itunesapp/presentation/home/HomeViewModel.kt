@@ -1,5 +1,6 @@
 package com.karakoca.itunesapp.presentation.home
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
@@ -25,14 +26,17 @@ class HomeViewModel @Inject constructor(
     private val apiService: ApiService
 ) : BaseViewModel() {
 
-    val searchTerm = MutableLiveData<String>("jack johnson")
+    var searchTerm = "jack johnson"
+
+    private val _state = MutableLiveData<State>()
+    val state: LiveData<State> get() = _state
 
     @OptIn(ExperimentalPagingApi::class)
     fun getHome(): Flow<PagingData<SearchResult>> {
         return Pager(
             config = PagingConfig(pageSize = 20, enablePlaceholders = false, prefetchDistance = 2),
             remoteMediator = ItunesRemoteMediator(
-                searchTerm = searchTerm.value ?: "",
+                searchTerm = searchTerm ?: "",
                 itunesDb = iTunesDb,
                 apiService = apiService
             ),
@@ -53,5 +57,19 @@ class HomeViewModel @Inject constructor(
 
     fun getLocalDataSize(): Int {
         return iTunesDb.dao.getAllData().size
+    }
+
+    fun searchMusic(term: String) {
+        searchTerm = term
+        _state.value = State.OnQueryChanged(term)
+    }
+
+    fun clearState() {
+        _state.value = State.Empty
+    }
+
+    sealed class State {
+        data class OnQueryChanged(val term: String) : State()
+        object Empty : State()
     }
 }
